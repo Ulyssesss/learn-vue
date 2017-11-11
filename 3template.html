@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <p>Message: {{ msg }}</p>
+    <p v-once>这个将不会改变: {{ msg }}</p>
+    <div v-html="html"></div>
+    <p v-bind:id="'id-' + id"></p>
+    <input v-bind:disabled="disabled">
+    <p>{{ msg + html }}</p>
+    <a v-bind:href="url">...</a>
+    <a :href="url">...</a>
+    <button v-on:click="doSomething">btn</button>
+    <button @click="doSomething">btn</button>
+</div>
+</body>
+</html>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            msg: 'Hello Vue!',
+            html: '<h1>html</h1>',
+            id: 1,
+            disabled: true,
+            url: 'http://www.baidu.com'
+        },
+        methods: {
+            doSomething: function () {
+                alert(1);
+            }
+        }
+    });
+</script>
