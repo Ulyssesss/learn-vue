@@ -10,18 +10,18 @@
 </html>
 <script>
     var data = { a: 1 };
-    var vm = new Vue({
-        el: '#example',
+    var app = new Vue({
+        el: '#app',
         data: data,
         created: function () {
             console.log('a is: ' + this.a)
         }
     });
-    console.log(vm.a === data.a);//true
-    vm.a = 2;
+    console.log(app.a === data.a);//true
+    app.a = 2;
     console.log(data.a);//2
     data.a = 3;
-    console.log(vm.a);//3
-    console.log(vm.$data === data);//true
-    console.log(vm.$el === document.getElementById('example'));//true
+    console.log(app.a);//3
+    console.log(app.$data === data);//true
+    console.log(app.$el === document.getElementById('app'));//true
 </script>

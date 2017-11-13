@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <my-component-1></my-component-1>
+    <my-component-2></my-component-2>
+
+    <table>
+        <!--<my-row> 会被当作无效的内容-->
+        <tr is="my-row"></tr>
+    </table>
+
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+
+    <simple-prop my-message="test-prop"></simple-prop>
+    <simple-prop :my-message="dynamicProp"></simple-prop>
+
+    <prop :text="todo.text" :id="todo.id"></prop>
+    <prop v-bind="todo"></prop>
+</div>
+</body>
+</html>
+<script>
+    Vue.component('my-component-1', {
+        template: '<div>A custom component!</div>'
+    });
+
+    var Child = {
+        template: '<div>A custom component!</div>'
+    };
+
+    var Counter = {
+        template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+        data: function () {
+            return {counter: 0};
+        }
+    };
+
+    var Prop = {
+        props: ['myMessage'],
+        template: '<p>{{ myMessage }}</p>'
+    };
+
+    var Prop2 = {
+        props: ['id', 'text'],
+        template: '<div><p>{{ id }}</p><p>{{ text }}</p></div>'
+    };
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            dynamicProp:'aaa',
+            todo: {
+                id: 1,
+                text: 'Learn Vue'
+            }
+        },
+        components: {
+            'my-component-2': Child,
+            'my-row':{template: '<tr></tr>'},
+            'simple-counter': Counter,
+            'simple-prop': Prop,
+            'prop': Prop2
+        }
+    });
+</script>
